@@ -1,0 +1,698 @@
+$text-gray: #c6cad7;
+$primary-color: #ffc87a;
+$text-color: #1a2b5f;
+html {
+  font-size: 62.5%;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+  --webkit-box-sizing: border-box;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a{
+  text-decoration: none;
+}
+
+body{
+  font-family: "Poppins", sans-serif;
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+@mixin flex($align: flex-start, $justify: flex-start, $wrap: nowrap, $dir: row){
+  display: flex;
+  align-items: $align;
+  justify-content: $justify;
+  flex-wrap: $wrap;
+  flex-direction: $dir;
+}
+
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+.wrapper {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.container{
+    margin: 0 auto;
+    max-width: 1210px;  
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.header{
+  padding-top: 4rem;
+  &__inner{
+    @include flex(center, space-between);
+  }
+  &__menu{
+    &-list{
+      @include flex(center);
+    }
+    &-item{
+      margin-left: 5rem;
+      &:last-child{
+        margin-left: 7rem;
+      }
+    }
+    &-link{
+      font-size: 1.6rem;
+      color: $text-color;
+      transition: color 0.2s linear, border 0.2s linear;
+      &:hover{
+        color: $primary-color;
+      }
+    }
+  }
+}
+
+.logo{
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: $text-color;
+  &__text{
+    color: $primary-color;
+  }
+}
+
+.banner{
+  padding: 15rem;
+  padding-bottom: 15rem;
+  max-width: 80rem;
+  margin: 0 auto;
+  text-align: center;
+  &_heading{
+    font-weight: 700;
+    font-size: 3rem;
+    margin-bottom: 3rem;
+    color: $text-color;
+  }
+  &_desc{
+    font-weight: 300;
+    font-size: 1.8rem;
+    margin-bottom: 4rem;
+  }
+  &_buttons{
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    .btn{
+      margin: 0 1rem;
+    }
+  }
+}
+
+.btn{
+  cursor: pointer;
+  outline: none;
+  font-size: 1.6rem;
+  text-align: center;
+  color: $text-color;
+  padding: 1.5rem 3rem;
+  display: inline-block;
+  border: 0;
+  background-color: transparent;
+  &--border{
+    border: 1px solid currentColor;
+  }
+  &--rounded{
+    border-radius: 5rem;
+  }
+  &--primary{
+    background-color: $primary-color;
+    &.has--shadow{
+      box-shadow: 0 10px 35px -5px $primary-color;
+    }
+  }
+}
+
+.category{
+  &__list{
+    @include flex(stretch,space-between,wrap)
+  }
+  &__item{
+    width: calc(25% - 22.5px);
+    padding: 2.5rem;
+    background-color: white;
+    border-radius: 20px;
+    @include flex(stretch, flex-start, nowrap, column);
+    &:first-child{
+      box-shadow: 0 20px 35px -5px rgba(255, 151, 195, 0.25);
+    }
+    &:nth-child(2){
+      box-shadow: 0 20px 35px -5px rgba(255, 112, 109, 0.25);
+    }
+    &:nth-last-child(2){
+      box-shadow: 0 20px 35px -5px rgba(133, 152, 255, 0.25);
+    }
+    &:last-child{
+      box-shadow: 0 20px 35px -5px rgba(255, 200, 122, 0.25);
+    }
+  }
+  &__image{
+    border-radius: inherit;
+    object-fit: cover;
+    margin-bottom: 4rem;
+    @include size(100%, 23rem)
+  }
+  &__name,
+  &__details{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  &__name{
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+  &__details{
+    font-size: 1.4rem;
+    color:$text-gray;
+    margin-top:auto;
+    i{
+      margin-left: 1.5rem;
+    }
+  }
+}
+
+.feature{
+  padding-top: 18rem;
+  &__item{
+    display: flex;
+    align-items: center;
+    margin-bottom: 15rem;
+    &:nth-child(odd){
+      .feature__info{
+        padding-left: 10rem;
+      }
+    }
+    &:nth-child(even){
+      flex-direction: row-reverse;
+      .feature__info{
+        padding-right: 10rem;
+      }
+    }
+  }
+  &__image,&__info{
+    width: 50%;
+  }
+  &__title{
+    font-size: 4rem;
+    color: $text-color;
+    font-weight: 600;
+    margin-bottom: 2.5rem;
+  }
+  &__desc{
+    font-weight: 300;
+    font-size: 1.4rem;
+    margin-bottom: 4rem;
+    line-height: 1.8;
+  }
+  &-intro{
+    &__item{
+      font-weight: 600;
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+      text-decoration: underline;
+      &--circle{
+        text-decoration: none;
+        position: relative;
+        margin-left: 3rem;
+        &:before{
+          content: "";
+          position:absolute;
+          top: 10%;
+          left: -30px;
+          width: 2rem;
+          height: 2rem;
+          border-radius: 2rem;
+          background-color: #ff6adf;
+        }
+        &:nth-child(2)::before{
+          background-color: #92fa3c;
+        }
+        &:nth-child(3)::before{
+          background-color: #1ec0f4;
+        }
+        &:last-child:before{
+          background-color: #ff899c;
+        }
+      }
+    }
+  }
+  &-best{
+    &__icon{
+      width: 5rem;
+      height: 5rem;
+      border-radius: 4px;
+      font-size: 2rem;
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      position: relative;
+      color: #ffa400;
+      z-index: 1;
+      &:after{
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: inherit;
+        background-color: currentColor;
+        z-index: -1;
+        opacity: 0.2;
+      }
+    }
+    &__title{
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    &__desc{
+      font-weight: 300;
+      
+    }
+    &__list{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      flex-wrap: wrap;
+    }
+
+    &__item{
+      width: calc(50% - 3rem);
+      margin-bottom: 5rem;
+    }
+  }
+}
+
+.text-clamp{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  &--2{
+    -webkit-line-clamp: 2;
+  }
+}
+
+.partner{
+  margin-bottom: 19rem;
+  &__container{
+    max-width: 83rem;
+    text-align: center;
+  }
+  &__title{
+   font-size: 2rem;
+   font-weight: bold;
+   padding-bottom: 7rem;
+   border-bottom: 1px solid currentcolor;
+   margin-bottom: 7rem;
+  }
+  &__list{
+    @include flex(center, space-between );
+  }
+}
+
+.connect{
+  text-align: center;
+  &__title{
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 3.5rem;
+  }
+  &__notice{
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 6rem;
+    span{
+      color: $primary-color;
+    }
+  }
+  &__list{
+    @include flex(stretch,space-between);
+    margin-bottom: 18rem;
+  }
+  &__item{
+    width: calc(25% - 22.5px);
+  }
+}
+
+.subscribe{
+  margin-bottom: 5rem;
+  &__container{
+    padding-bottom: 8rem;
+    border-bottom: 2px solid currentColor;
+    @include flex(flex-start,space-between);
+  }
+  &__title,
+  &__info{
+    width: 50%;
+  }
+  &__title{
+    font-size: 2rem;
+    font-weight: bold;
+    max-width: 43rem;
+  }
+  &__form{
+    background-color: #f2f1f6;
+    @include flex(center, space-between);
+    padding: 2rem;
+    margin-bottom: 3.5rem;
+  }
+
+  &__input,
+  &__botton{
+    padding: 0;
+  }
+
+  &__input{
+    border: 0;
+    outline: none;
+    background-color: transparent;
+    font-size: 1.4rem;
+    font-family: "Poppins"; 
+    flex-grow: 1;
+    padding-right: 1.5rem;
+  }
+  &__button{
+    border: 0;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+    font-size: 1.4rem;
+    font-family: "Poppins";
+  }
+  &__social i{
+    margin-left: 4rem;
+    font-size: 2rem;
+  }
+}
+
+.footer{
+  &__container{
+    @include flex(flex-start,space-between);
+  }
+  &__item{
+    width: 25%;
+  }
+  &__link{
+    color: $text-color;
+    font-size: 1.4rem;
+    display: block;
+    margin-bottom: 3rem;
+    width: fit-content;
+  }
+}
+
+@media screen and ( max-width: 1023px)  {//ipad
+  .banner{
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    &_heading{
+      font-size: 4rem;
+      margin-bottom: 2rem;
+    }
+    &_desc{
+      font-size: 1.6rem;
+    }
+    &_buttons > .btn{
+      font-size: 1.4rem;
+    }
+  }
+  .category{
+    &__item{
+      width: calc(50% - 22.5px);
+      margin: 1rem 1rem;
+      padding: 1rem;
+    }
+    &__list{
+      width: 100%;
+    }
+  }
+  .feature{
+    padding-top: 10rem;
+    &__title{
+      font-size: 2.2rem;
+    }
+    &__desc{
+      font-size: 1.2rem;
+    }
+    &-intro{
+      &__item{
+        font-size: 1.4rem;
+      }
+    }
+  }
+}
+
+@media screen and ( max-width: 767px) {//678plus
+  .header__menu{
+    display: none;
+  }
+  .banner{
+    padding: 5rem 1rem;
+    &_container{
+      width: 180px;
+    }
+    &_heading{
+      font-size: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    &_desc{
+      font-size: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 3rem;
+    }
+    &_buttons >.btn{
+        font-size: 1rem;
+      }
+  }
+  .category{
+    &__item{
+      width: 100%;
+    }
+  }
+  .feature{
+    width: 100%;
+    &__item{
+      flex-direction: column;
+      margin-bottom: 1rem;
+      &__image{
+        width: 374px;
+      }
+    }
+    &__info{
+      width: 374px;
+      padding-left: 0 !important;
+    }
+    &__title{
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      display: flex;
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+    }
+    &__desc{
+      padding: 0 2rem;
+      font-size: 1rem;
+      text-align: center;
+      align-items: center;
+    }
+    &-intro__item{
+      font-size: 1.2rem;
+      &--circle{
+        &::before{
+          top: 0.4rem;
+          left: 2rem;
+          width: 1rem;
+          height: 1rem;
+        }
+      }
+    }
+    &-best{
+      &__list{
+
+      }
+      &__title{
+        font-size:12px;
+      }
+    }
+  }
+  .subscribe{
+    &__social{
+      width: 100%;
+      text-align: center;
+      i{
+        margin-left: 2.5rem;
+        margin-right:2.5rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 479px) { //X
+  .feature{
+    &-intro{
+      &__item{
+        padding-left: 4rem;
+        font-size: 1rem;
+      }
+    }
+    &__info > .btn{
+      margin-left: 50%;
+      transform: translateX(-50%);
+      font-size: 1rem;
+    }
+    &-best__list{
+      padding: 0 3rem;
+    }
+  }
+  .partner{
+    margin-bottom:5rem;
+    &__title{
+      margin-bottom:5rem;
+      padding-bottom:5rem;
+    }
+  }
+  .connect{
+    &__title{
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+    &__notice{
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    &__list{
+      margin-bottom: 5rem;
+    }
+  }
+  .subscribe{
+    margin-bottom: 2rem;
+    &__container{
+      display: inline;
+      font-size: 1rem;
+      border-bottom: none;
+    }
+    &__title{
+      width: 100%;
+      font-size: 2rem;
+      text-align: center;
+      padding: 0 2rem;
+      margin-bottom: 1rem;
+    }
+    &__info{
+      width: 100%;
+      padding: 0 1rem;
+    }
+    &__social{
+      width: 100%;
+      text-align: center;
+      border-bottom: 1px solid;
+      i{
+        margin-left: 3.5rem;
+        margin-right: 3rem;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+  .footer{
+    display:inline;
+    width: 100%;
+    column-count: 2;
+    &__item{
+      width: 100%;
+      font-size: 2rem;
+      &:nth-child(2){
+        
+      }
+    }
+    &__link{
+      column-count: 1;
+      width: 100%;
+      display: flex;
+      font-size: 1rem;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+      transform: translateX(-50%);
+      &:nth-child(1){
+        margin-top: 5rem;
+        display: flex;
+      }
+    }
+  }
+}
+@media screen and (max-width: 374px) { //5se
+  .feature{
+    &__item{
+      margin-bottom: 1rem;
+    }
+    &__info > .btn{
+      font-size: 1rem;
+    }
+    &__info{
+      width: 320px;
+    }
+    &__title{
+      font-size: 1rem;
+      text-align: center;
+    }
+    &__desc{
+      font-size: 0.7rem;
+      padding: 0 2rem;
+      margin-bottom: 2rem;
+    }
+    &-intro__item{
+      display: flex;
+      font-size: 0.7rem;
+      text-align: center;
+      line-height: 0.5rem;
+      &--circle{
+        &::before{
+          top: -1px;
+        }
+      }
+    }
+  }
+  .subscribe{
+    margin-bottom: 2rem;
+    &__social{
+      width: 100%;
+      text-align: center;
+      i{
+        margin:1rem;
+
+      }
+    }
+  }
+  .footer{
+    width: 100%;
+    &__item{
+      margin-right: 1rem;
+      &:nth-child(2){
+        text-align: center;
+      }
+    }
+  }
+}
+/*# sourceMappingURL=style.scss.map */
